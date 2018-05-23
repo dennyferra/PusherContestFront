@@ -15,7 +15,7 @@ class Game {
     end: null,
     ended: false,
     secondsRemaining: 0,
-    totalSeconds: 35,
+    totalSeconds: 120,
     fromNow: null,
     percent: 0
   }
@@ -28,6 +28,7 @@ class Game {
   guessBusy = false
   guessError = null
   winner = null
+  timer = null
 
   constructor(rootStore) {
     this.rootStore = rootStore
@@ -81,26 +82,6 @@ class Game {
         }
       }
     )
-
-    reaction(
-      () => this.round.secondsRemaining,
-      remaining => {
-        if (remaining > 0) {
-          setTimeout(
-            action(() => {
-              this.round.secondsRemaining--
-              this.round.fromNow = moment(this.round.end).fromNow()
-              this.round.percent =
-                (this.round.totalSeconds - this.round.secondsRemaining) *
-                100 /
-                this.round.totalSeconds
-              if (this.round.secondsRemaining <= 0) this.round.ended = true
-            }),
-            1000
-          )
-        }
-      }
-    )
   }
 
   startRoundTimer() {
@@ -109,6 +90,20 @@ class Game {
     const remaining = moment.duration(end.diff(Date.now())).asSeconds() - 4 // Why 4? the world may never know, I dont have time to figure it out
     this.round.totalSeconds = remaining
     this.round.secondsRemaining = remaining
+
+    if (this.timer != null) clearInterval(this.timer)
+    this.timer = setInterval(
+      action(() => {
+        this.round.secondsRemaining--
+        this.round.fromNow = moment(this.round.end).fromNow()
+        this.round.percent =
+          (this.round.totalSeconds - this.round.secondsRemaining) *
+          100 /
+          this.round.totalSeconds
+        if (this.round.secondsRemaining <= 0) this.round.ended = true
+      }),
+      1000
+    )
   }
 
   sync() {
