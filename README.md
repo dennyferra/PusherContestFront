@@ -1,2 +1,0 @@
-# PusherContestFront
-Created with CodeSandbox
