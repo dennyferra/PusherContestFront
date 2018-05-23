@@ -8,9 +8,7 @@ import PlayButton from './PlayButton'
 import TimeRemaining from './TimeRemaining'
 import Status from './Status'
 
-@inject('user', 'game')
-@observer
-export default class Content extends React.Component {
+class Content extends React.Component {
   makeGuess = () => {
     this.props.game.showGuess = true
   }
@@ -64,3 +62,5 @@ export default class Content extends React.Component {
     )
   }
 }
+
+export default inject('user', 'game')(observer(Content))

@@ -1,8 +1,6 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react'
 
-@inject('user')
-@observer
 class Login extends React.Component {
   constructor(props) {
     super(props)
@@ -82,4 +80,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login
+export default inject('user')(observer(Login))

@@ -3,7 +3,6 @@ import { observer } from 'mobx-react'
 
 import BoardGuess from './BoardGuess'
 
-@observer
 class Board extends React.Component {
   render() {
     return (
@@ -44,4 +43,4 @@ class Board extends React.Component {
   }
 }
 
-export default Board
+export default observer(Board)

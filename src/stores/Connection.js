@@ -1,3 +1,4 @@
+/* global Pusher */
 import { observable, action, decorate, reaction, runInAction } from 'mobx'
 
 class Connection {

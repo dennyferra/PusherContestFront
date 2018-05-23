@@ -1,8 +1,6 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react'
 
-@inject('user', 'game')
-@observer
 class Guess extends React.Component {
   constructor(props) {
     super(props)
@@ -84,4 +82,4 @@ class Guess extends React.Component {
   }
 }
 
-export default Guess
+export default inject('user', 'game')(observer(Guess))

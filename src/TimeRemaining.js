@@ -1,8 +1,7 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 
-@observer
-export default class TimeRemaining extends React.Component {
+class TimeRemaining extends React.Component {
   render() {
     if (this.props.end) {
       const style = this.props.secondsRemaining <= 10 ? 'is-danger' : 'is-info'
@@ -26,3 +25,5 @@ export default class TimeRemaining extends React.Component {
     return null
   }
 }
+
+export default observer(TimeRemaining)

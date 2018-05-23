@@ -2,7 +2,6 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import moment from 'moment'
 
-@observer
 class Status extends React.Component {
   render() {
     const { members, status, round } = this.props
@@ -45,4 +44,4 @@ class Status extends React.Component {
   }
 }
 
-export default Status
+export default observer(Status)

@@ -1,7 +1,6 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react'
 
-@observer
 class Flash extends React.Component {
   render() {
     const style = this.props.error ? 'is-danger' : 'is-primary'
@@ -23,4 +22,4 @@ class Flash extends React.Component {
   }
 }
 
-export default Flash
+export default observer(Flash)

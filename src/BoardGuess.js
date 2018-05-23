@@ -2,7 +2,6 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import FA from 'react-fontawesome'
 
-@observer
 class BoardGuess extends React.Component {
   render() {
     const { member, last } = this.props
@@ -36,4 +35,4 @@ class BoardGuess extends React.Component {
   }
 }
 
-export default BoardGuess
+export default observer(BoardGuess)
